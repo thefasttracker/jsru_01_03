@@ -14,7 +14,10 @@ class CommentList extends Component {
         const { isOpen } = this.state
         const actionText = isOpen ? 'hide comments' : 'show comments'
 
-        const comments = this.props.comments.map((comment) => <li key={comment.id}><Comment comment = {comment}/></li>)
+        const comments = this.props.comments.map((comment) =>
+            <li key={comment.id}>
+                <Comment comment = {comment}/>
+            </li>)
         return (
             <div>
                 <a href = "#" onClick = {this.toggleOpen}>{actionText}</a>
