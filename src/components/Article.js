@@ -5,7 +5,6 @@ class Article extends Component {
     render() {
         return (
             <div>
-                <a href = "#" onClick = {this.props.openArticle}>select</a>
                 {this.getTitle()}
                 {this.getBody()}
             </div>
@@ -13,7 +12,8 @@ class Article extends Component {
     }
 
     getTitle() {
-        const { article: { title }, openArticle  } = this.props
+        const { article , openArticle  } = this.props
+        const title = article.title ? article.title : "No title"
         return  (
             <h3 onClick={openArticle}>
                 {title}
@@ -34,3 +34,4 @@ class Article extends Component {
 }
 
 export default Article
+//<a href = "#" onClick = {this.props.openArticle}>select</a>
