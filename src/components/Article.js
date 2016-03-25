@@ -1,34 +1,37 @@
-import React, { Component } from 'react'
-import CommentList from './CommentList'
+import React, { Component, PropTypes } from 'react'
+import Body from './Body'
 
 class Article extends Component {
+
+    static propTypes = {
+        isOpen: PropTypes.bool,
+        article:PropTypes.object.isRequired
+    }
+
+    componentWillMount() {
+
+    }
+
     render() {
+        const { isOpen, article } = this.props
         return (
             <div>
                 {this.getTitle()}
-                {this.getBody()}
+                <Body
+                    isOpen = {isOpen}
+                    article = {article}
+                />
             </div>
         )
     }
 
     getTitle() {
         const { article , openArticle  } = this.props
-        const title = article.title ? article.title : "No title"
+        const title = article.title || "No title"
         return  (
             <h3 onClick={openArticle}>
                 {title}
             </h3>
-        )
-    }
-
-    getBody() {
-        const { isOpen, article} = this.props
-        if (!isOpen) return null
-        return (
-            <div>
-                <p>{article.text}</p>
-                <CommentList comments = {article.comments || []} />
-            </div>
         )
     }
 }
