@@ -37,4 +37,3 @@ class Article extends Component {
 }
 
 export default Article
-//<a href = "#" onClick = {this.props.openArticle}>select</a>

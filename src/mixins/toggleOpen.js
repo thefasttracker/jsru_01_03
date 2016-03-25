@@ -13,7 +13,8 @@ export default {
 		})
 	},
 
-	close() {
+	close: function (ev) {
+		if (ev) ev.preventDefault()
 		this.setState({
 			isOpen: false
 		})
