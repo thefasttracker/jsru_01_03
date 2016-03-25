@@ -1,5 +1,5 @@
 import React from 'react'
-import CommentListOld from './CommentListOld'
+import CommentList from './CommentList'
 
 export default (props) => {
 	const { isOpen, article} = props
@@ -7,7 +7,7 @@ export default (props) => {
 	return (
 		<div>
 			<p>{article.text}</p>
-			<CommentListOld comments = {article.comments || []} />
+			<CommentList comments = {article.comments || []} />
 		</div>
 	)
 }

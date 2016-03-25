@@ -9,13 +9,17 @@ class Article extends Component {
     }
 
     componentWillMount() {
+        console.log("---", 'going to mount');
+    }
 
+    componentDidMount() {
+        console.log("---", 'mounted to: ', this.refs.container);  // ref is for jQuery and other js container
     }
 
     render() {
         const { isOpen, article } = this.props
         return (
-            <div>
+            <div ref="container"> {/* ref is for jQuery and other js container*/}
                 {this.getTitle()}
                 <Body
                     isOpen = {isOpen}
