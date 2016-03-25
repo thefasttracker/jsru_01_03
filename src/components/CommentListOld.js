@@ -1,13 +1,10 @@
 import React from 'react'
 import Comment from './Comment'
+import toggleOpen from '../mixins/toggleOpen'
 
 export default React.createClass({
 
-	getInitialState(){
-		return{
-			isOpen: false
-		}
-	},
+	mixins: [toggleOpen],
 
 	render: function () {
 		const { isOpen } = this.state
@@ -24,12 +21,5 @@ export default React.createClass({
 				<ul>{isOpen ? comments : null}</ul>
 			</div>
 		)
-	},
-
-	toggleOpen: function(ev) {
-		ev.preventDefault()
-		this.setState({
-			isOpen: !this.state.isOpen
-		})
 	}
 })
