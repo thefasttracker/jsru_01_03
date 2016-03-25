@@ -2,9 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
 
 class CommentList extends Component {
+
     static propTypes = {
         comments: PropTypes.array
-    };
+    }
 
     state = {
         isOpen: false
@@ -18,6 +19,7 @@ class CommentList extends Component {
             <li key={comment.id}>
                 <Comment comment = {comment}/>
             </li>)
+
         return (
             <div>
                 <a href = "#" onClick = {this.toggleOpen}>{actionText}</a>

@@ -27,6 +27,8 @@ class ArticleList extends Component {
 
     openArticle = (openArticleId) => (ev) => {
         if (ev) ev.preventDefault()
+        if (this.state.openArticleId == openArticleId ) return this.setState({ openArticleId: null })
+
         this.setState({ openArticleId })
     }
 }
