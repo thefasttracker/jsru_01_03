@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import Comment from './Comment'
+import Comment from './CommentStateless'
 import toggleOpen from '../HOC/toggleOpen'
 
 class CommentList extends Component {
