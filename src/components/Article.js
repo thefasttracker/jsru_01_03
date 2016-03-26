@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import {findDOMNode} from 'react-dom'
 import Body from './Body'
 
 class Article extends Component {
@@ -13,13 +14,13 @@ class Article extends Component {
     }
 
     componentDidMount() {
-        console.log("---", 'mounted to: ', this.refs.container);  // ref is for jQuery and other js container
+        console.log("---", 'mounted to: ', this.refs.container);  // example ref is for jQuery and other js container
     }
 
     render() {
         const { isOpen, article } = this.props
         return (
-            <div ref="container"> {/* ref is for jQuery and other js container*/}
+            <div ref="container"> {/* this ref is for jQuery and other js container*/}
                 {this.getTitle()}
                 <Body
                     isOpen = {isOpen}

@@ -4,27 +4,29 @@ export default (Component) => {
 	return class extends ReactComponent {
 
 		state = {
-			isOpen: false
+			openArticleId: null
 		}
 
 		render() {
 			return <Component {...this.props} {...this.state}
-				toggleOpen = {this.toggleOpen}
+				openArticle = {this.openArticle}
+				isOpen = {this.isOpen}
 				close = {this.close}
 			/>
 		}
 
-		toggleOpen = (ev) => {
+		openArticle = (openArticleId) => (ev) => {
 			if (ev) ev.preventDefault()
-			this.setState({
-				isOpen: !this.state.isOpen
-			})
+			if (this.state.openArticleId == openArticleId) return this.setState({ openArticleId: null })
+			this.setState({ openArticleId })
 		}
+
+		isOpen = (id) => this.state.openArticleId === id
 
 		close = (ev) => {
 			if (ev) ev.preventDefault()
 			this.setState({
-				isOpen: false
+				openArticleId: null
 			})
 		}
 	}
