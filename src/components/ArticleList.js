@@ -1,36 +1,29 @@
 import React, { Component, PropTypes } from 'react'
 import Article from './Article'
+import oneOpen from '../HOC/oneOpen'
+
 
 class ArticleList extends Component {
-    constructor() {
-        super()
-        this.state = {
-            openArticleId: null
-        }
-    }
+
     render() {
-        const articles = this.props.articles.map((article) =>
+        const {isOpen, openArticle, articles} = this.props
+        const articleItem = articles.map((article) =>
             <li key={article.id}>
                 <Article article={article}
-                         openArticle = {this.openArticle(article.id)}
-                         isOpen = {article.id === this.state.openArticleId}/>
+                         openArticle = {openArticle(article.id)}
+                         isOpen = {isOpen(article.id)}
+                />
             </li>
         )
         return (
             <div>
                 <ul>
-                    {articles}
+                    {articleItem}
                 </ul>
             </div>
         )
     }
 
-    openArticle = (openArticleId) => (ev) => {
-        if (ev) ev.preventDefault()
-        if (this.state.openArticleId == openArticleId ) return this.setState({ openArticleId: null })
-
-        this.setState({ openArticleId })
-    }
 }
 
-export default ArticleList
+export default oneOpen(ArticleList)
