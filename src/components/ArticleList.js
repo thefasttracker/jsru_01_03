@@ -6,11 +6,11 @@ import oneOpen from '../HOC/oneOpen'
 class ArticleList extends Component {
 
     render() {
-        const {isOpen, openArticle, articles} = this.props
+        const {isOpen, openItem, articles} = this.props
         const articleItem = articles.map((article) =>
             <li key={article.id}>
                 <Article article={article}
-                         openArticle = {openArticle(article.id)}
+                         openItem = {openItem(article.id)}
                          isOpen = {isOpen(article.id)}
                 />
             </li>

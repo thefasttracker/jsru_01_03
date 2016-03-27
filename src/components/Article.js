@@ -31,10 +31,10 @@ class Article extends Component {
     }
 
     getTitle() {
-        const { article , openArticle  } = this.props
+        const { article , openItem  } = this.props
         const title = article.title || "No title"
         return  (
-            <h3 onClick={openArticle}>
+            <h3 onClick={openItem}>
                 {title}
             </h3>
         )

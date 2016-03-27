@@ -1,12 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 import Comment from './CommentStateless'
 import toggleOpen from '../HOC/toggleOpen'
+import linkedState from 'react-addons-linked-state-mixin'
 
-class CommentList extends Component {
-
-    static propTypes = {
-        comments: PropTypes.array
-    }
+const CommentList = React.createClass({
+    mixins: [linkedState],
+    propTypes: {
+        article: PropTypes.object
+    },
+    getInitialState() {
+        return {
+            comment: ''
+        }
+    },
 
     render() {
         const { isOpen, comments, toggleOpen } = this.props
@@ -21,10 +27,18 @@ class CommentList extends Component {
             <div>
                 <a href = "#" onClick = {toggleOpen}>{actionText}</a>
                 <ul>{isOpen ? commentItems : null}</ul>
+                {this.getInput()}
             </div>
         )
+    },
+    getInput() {
+        if (!this.props.isOpen) return null
+        return <div>
+            <input valueLink = {this.linkState("comment")}/>
+            <a href="#">add comment</a>
+        </div>
     }
 
-}
+})
 
 export default toggleOpen(CommentList)

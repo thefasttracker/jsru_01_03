@@ -1,32 +1,32 @@
-import React, {Component as ReactComponent} from 'react' // Component as ReactComponent - пример переназвания любого компонента
+import React, {Component as ReactComponent} from 'react' // Component as ReactComponent - пример переназвания компонента
 
 export default (Component) => {
 	return class extends ReactComponent {
 
 		state = {
-			openArticleId: null
+			openItemId: null
 		}
 
 		render() {
 			return <Component {...this.props} {...this.state}
-				openArticle = {this.openArticle}
+				openItem = {this.openItem}
 				isOpen = {this.isOpen}
 				close = {this.close}
 			/>
 		}
 
-		openArticle = (openArticleId) => (ev) => {
+		openItem = (openItemId) => (ev) => {
 			if (ev) ev.preventDefault()
-			if (this.state.openArticleId == openArticleId) return this.setState({ openArticleId: null })
-			this.setState({ openArticleId })
+			if (this.state.openItemId == openItemId) return this.setState({ openItemId: null })
+			this.setState({ openItemId })
 		}
 
-		isOpen = (id) => this.state.openArticleId === id
+		isOpen = (id) => this.state.openItemId === id
 
 		close = (ev) => {
 			if (ev) ev.preventDefault()
 			this.setState({
-				openArticleId: null
+				openItemId: null
 			})
 		}
 	}
