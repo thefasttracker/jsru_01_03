@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import {findDOMNode} from 'react-dom'
 import Body from './Body'
+import { deleteArticle } from '../actions/articles'
 
 class Article extends Component {
 
@@ -9,18 +10,11 @@ class Article extends Component {
         article:PropTypes.object.isRequired
     }
 
-    componentWillMount() {
-        console.log("---", 'going to mount');
-    }
-
-    componentDidMount() {
-        console.log("---", 'mounted to: ', this.refs.container);  // example ref is for jQuery and other js container
-    }
-
     render() {
         const { isOpen, article } = this.props
         return (
             <div ref="container"> {/* this ref is for jQuery and other js container*/}
+                <a href="#" onClick = {this.handleDelete}>delete</a>
                 {this.getTitle()}
                 <Body
                     isOpen = {isOpen}
@@ -28,6 +22,13 @@ class Article extends Component {
                 />
             </div>
         )
+    }
+
+    handleDelete = (ev) => {
+        ev.preventDefault()
+        deleteArticle(this.props.article.id)
+        console.log("---", 'deleting', this.props.article.id)
+
     }
 
     getTitle() {

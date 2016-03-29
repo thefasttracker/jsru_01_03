@@ -1,9 +1,4 @@
-import Article from './ArticleStore'
+import Article from './Article'
+import articles from '../fixtures'
 
-const articleStore = new Article
-
-export articleStore
-
-export default {
-	articleStore
-}
+export const articleStore = new Article(articles)
