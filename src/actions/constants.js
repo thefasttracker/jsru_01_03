@@ -1,0 +1,2 @@
+export const DELETE_ARTICLE = 'DELETE_ARTICLE',
+               CHANGE_EVENT = 'CHANGE_EVENT'
