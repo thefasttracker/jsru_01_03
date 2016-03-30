@@ -1,10 +1,10 @@
 import AppDispatcher from '../dispatcher'
-import { DELETE_ARTICLE, CHANGE_EVENT } from '../actions/constants'
+import { DELETE_ARTICLE } from '../actions/constants'
 import SimpleStore from './SimpleStore'
 
 class ArticleStore extends SimpleStore {
-	constructor(initialState) {
-		super(initialState)
+	constructor(stores, initialState) {
+		super(stores, initialState)
 
 		AppDispatcher.register((action) => {
 			const { type, data } = action

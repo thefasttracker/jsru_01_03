@@ -7,7 +7,7 @@ export default (props) => {
 	return (
 		<div>
 			<p>{article.text}</p>
-			<CommentList comments = {article.comments || []} />
+			<CommentList comments = {article.getRelation('comments')} />
 		</div>
-	)
-}
+		)
+	}
