@@ -1,2 +1,2 @@
 export const DELETE_ARTICLE = 'DELETE_ARTICLE',
-               CHANGE_EVENT = 'CHANGE_EVENT'
+                ADD_COMMENT = 'ADD_COMMENT'

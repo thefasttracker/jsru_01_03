@@ -1,19 +1,20 @@
 import React, { Component, PropTypes } from 'react'
-import Comment from './CommentStateless'
+import Comment from './Comment'
 import toggleOpen from '../HOC/toggleOpen'
 import linkedState from 'react-addons-linked-state-mixin'
 
 const CommentList = React.createClass({
     mixins: [linkedState],
     propTypes: {
-        article: PropTypes.object
+        comments: PropTypes.array,
+        addComment: PropTypes.func.isRequired
     },
     getInitialState() {
         return {
             comment: ''
         }
     },
-
+    
     render() {
         const { isOpen, comments, toggleOpen } = this.props
         const actionText = isOpen ? 'hide comments' : 'show comments'
@@ -31,14 +32,22 @@ const CommentList = React.createClass({
             </div>
         )
     },
+
     getInput() {
         if (!this.props.isOpen) return null
         return <div>
             <input valueLink = {this.linkState("comment")}/>
-            <a href="#">add comment</a>
+            <a href="#" onClick = {this.addComment}>add comment</a>
         </div>
-    }
+    },
 
+    addComment(ev) {
+        ev.preventDefault()
+        this.props.addComment(this.state.comment)
+        this.setState({
+            comment: ''
+        })
+    }
 })
 
 export default toggleOpen(CommentList)
