@@ -1,6 +1,5 @@
 import { EventEmitter } from 'events'
-import { CHANGE_EVENT } from '../actions/constants'
-import Model from "./Model"
+import Model from './Model'
 
 class SimpleStore extends EventEmitter {
     constructor(stores, initialState) {
@@ -8,18 +7,19 @@ class SimpleStore extends EventEmitter {
         this.__stores = stores
         this.__items = []
         if (initialState) initialState.forEach(this.__add)
+        this.__incrementalId = Math.max(...this.__items.map(el => el.id)) + 1000
     }
 
     addChangeListener(callback) {
-        this.on(CHANGE_EVENT, callback)
+        this.on('CHANGE_EVENT', callback)
     }
 
     emitChange() {
-        this.emit(CHANGE_EVENT)
+        this.emit('CHANGE_EVENT')
     }
 
     removeChangeListener(callback) {
-        this.removeListener(CHANGE_EVENT, callback)
+        this.removeListener('CHANGE_EVENT', callback)
     }
 
     getAll() {
@@ -36,6 +36,14 @@ class SimpleStore extends EventEmitter {
 
     __delete = (id) => {
         this.__items = this.__items.filter(item => item.id != id)
+    }
+
+    generateId() {
+        return ++this.__incrementalId
+    }
+
+    getCurrentId() {
+        return this.__incrementalId
     }
 }
 
